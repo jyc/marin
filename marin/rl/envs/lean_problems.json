@@ -1,0 +1,182 @@
+[
+  {
+    "id": "tutorial_world_level_1",
+    "level": 1,
+    "category": "tutorial",
+    "statement": "∀ x : Nat, x = x",
+    "hint": "Use the reflexivity tactic",
+    "solution": "intro x; rfl",
+    "context": ""
+  },
+  {
+    "id": "tutorial_world_level_2",
+    "level": 1,
+    "category": "tutorial",
+    "statement": "∀ x y : Nat, x = y → y = x",
+    "hint": "Use symmetry",
+    "solution": "intros x y h; symm; exact h",
+    "context": ""
+  },
+  {
+    "id": "addition_world_level_1",
+    "level": 2,
+    "category": "natural_numbers",
+    "statement": "∀ n : Nat, n + 0 = n",
+    "hint": "Use induction on n",
+    "solution": "intro n; induction n; rfl; simp [Nat.add_succ, *]",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "addition_world_level_2",
+    "level": 2,
+    "category": "natural_numbers",
+    "statement": "∀ a b : Nat, a + succ b = succ (a + b)",
+    "hint": "This is the definition of addition for successor",
+    "solution": "intros a b; rfl",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "addition_world_level_3",
+    "level": 3,
+    "category": "natural_numbers",
+    "statement": "∀ a b : Nat, succ a + b = succ (a + b)",
+    "hint": "Use induction on b",
+    "solution": "intros a b; induction b; rfl; simp [Nat.add_succ, *]",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "multiplication_world_level_1",
+    "level": 3,
+    "category": "natural_numbers",
+    "statement": "∀ m : Nat, m * 0 = 0",
+    "hint": "Use the definition of multiplication",
+    "solution": "intro m; simp",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "multiplication_world_level_2",
+    "level": 3,
+    "category": "natural_numbers",
+    "statement": "∀ m : Nat, m * 1 = m",
+    "hint": "Unfold the definition of 1 and use multiplication properties",
+    "solution": "intro m; simp",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "multiplication_world_level_3",
+    "level": 4,
+    "category": "natural_numbers",
+    "statement": "∀ m : Nat, 0 * m = 0",
+    "hint": "Use induction on m",
+    "solution": "intro m; induction m; simp; simp [Nat.mul_succ, *]",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "proposition_world_level_1",
+    "level": 2,
+    "category": "logic",
+    "statement": "∀ P Q : Prop, P → Q → P",
+    "hint": "Ignore Q and return P",
+    "solution": "intros P Q hp hq; exact hp",
+    "context": ""
+  },
+  {
+    "id": "proposition_world_level_2",
+    "level": 2,
+    "category": "logic",
+    "statement": "∀ P Q R : Prop, (P → Q) → (Q → R) → P → R",
+    "hint": "Function composition",
+    "solution": "intros P Q R hpq hqr hp; apply hqr; apply hpq; exact hp",
+    "context": ""
+  },
+  {
+    "id": "proposition_world_level_3",
+    "level": 3,
+    "category": "logic",
+    "statement": "∀ P Q : Prop, P ∧ Q → P",
+    "hint": "Extract the left component",
+    "solution": "intros P Q hpq; exact hpq.1",
+    "context": ""
+  },
+  {
+    "id": "proposition_world_level_4",
+    "level": 3,
+    "category": "logic",
+    "statement": "∀ P Q : Prop, P → Q → P ∧ Q",
+    "hint": "Construct the conjunction",
+    "solution": "intros P Q hp hq; exact ⟨hp, hq⟩",
+    "context": ""
+  },
+  {
+    "id": "proposition_world_level_5",
+    "level": 3,
+    "category": "logic",
+    "statement": "∀ P Q R : Prop, P ∨ Q → (P → R) → (Q → R) → R",
+    "hint": "Case analysis on the disjunction",
+    "solution": "intros P Q R hpq hpr hqr; cases hpq; apply hpr; assumption; apply hqr; assumption",
+    "context": ""
+  },
+  {
+    "id": "function_world_level_1",
+    "level": 4,
+    "category": "functions",
+    "statement": "∀ (X Y : Type) (f : X → Y) (a b : X), a = b → f a = f b",
+    "hint": "Apply the function to both sides of the equality",
+    "solution": "intros X Y f a b hab; rw [hab]",
+    "context": ""
+  },
+  {
+    "id": "function_world_level_2",
+    "level": 4,
+    "category": "functions",
+    "statement": "∀ (X Y Z : Type) (f : X → Y) (g : Y → Z), ∃ h : X → Z, ∀ x, h x = g (f x)",
+    "hint": "Function composition exists",
+    "solution": "intros X Y Z f g; use (g ∘ f); intro x; rfl",
+    "context": ""
+  },
+  {
+    "id": "inequality_world_level_1",
+    "level": 5,
+    "category": "natural_numbers",
+    "statement": "∀ a b : Nat, a ≤ b → b ≤ a → a = b",
+    "hint": "Antisymmetry of ≤",
+    "solution": "intros a b hab hba; apply Nat.le_antisymm; exact hab; exact hba",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "inequality_world_level_2",
+    "level": 5,
+    "category": "natural_numbers",
+    "statement": "∀ a : Nat, 0 ≤ a",
+    "hint": "Zero is the smallest natural number",
+    "solution": "intro a; apply Nat.zero_le",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "advanced_addition_world_level_1",
+    "level": 6,
+    "category": "natural_numbers",
+    "statement": "∀ a b c : Nat, (a + b) + c = a + (b + c)",
+    "hint": "Associativity of addition",
+    "solution": "intros a b c; apply Nat.add_assoc",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "advanced_multiplication_world_level_1",
+    "level": 6,
+    "category": "natural_numbers",
+    "statement": "∀ a b c : Nat, a * (b + c) = a * b + a * c",
+    "hint": "Left distributivity",
+    "solution": "intros a b c; apply Nat.left_distrib",
+    "context": "import Mathlib.Data.Nat.Basic"
+  },
+  {
+    "id": "power_world_level_1",
+    "level": 7,
+    "category": "natural_numbers",
+    "statement": "∀ a : Nat, a ^ 0 = 1",
+    "hint": "Definition of power",
+    "solution": "intro a; rfl",
+    "context": "import Mathlib.Data.Nat.Basic"
+  }
+]
