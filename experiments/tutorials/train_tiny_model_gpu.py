@@ -14,7 +14,7 @@ from experiments.llama import llama_nano
 from experiments.marin_models import marin_tokenizer
 from experiments.simple_train_config import SimpleTrainConfig
 from marin.execution.executor import executor_main
-from marin.resources import GpuConfig
+from marin.resources import TpuPodConfig
 
 wikitext_hf_id = "dlwh/wikitext_2_detokenized"
 wikitext_tokenized = default_tokenize(
@@ -27,7 +27,8 @@ wikitext_tokenized = default_tokenize(
 nano_train_config = SimpleTrainConfig(
     # Here we define the hardware resources we need.
     # TODO: AutoResources
-    resources=GpuConfig(gpu_count=1),
+    #resources=GpuConfig(gpu_count=1),
+    resources=TpuPodConfig(tpu_type="v5-8"),
     train_batch_size=32,
     num_train_steps=100,
     learning_rate=6e-4,
