@@ -14,7 +14,7 @@ from experiments.llama import llama_nano
 from experiments.marin_models import marin_tokenizer
 from experiments.simple_train_config import SimpleTrainConfig
 from marin.execution.executor import executor_main
-from marin.resources import CpuOnlyConfig
+from marin.resources import CpuOnlyConfig, TpuPodConfig
 
 # 1. Choose a dataset
 tinystories_hf_id = "roneneldan/TinyStories"
@@ -30,7 +30,8 @@ tinystories_tokenized = default_tokenize(
 # 3. Define training configuration
 nano_train_config = SimpleTrainConfig(
     # Here we define the hardware resources we need.
-    resources=CpuOnlyConfig(num_cpus=1),
+    # resources=CpuOnlyConfig(num_cpus=1),
+    resources=TpuPodConfig(tpu_type="v4-8"),
     train_batch_size=4,
     num_train_steps=100,
     # set hyperparameters
