@@ -43,7 +43,7 @@ jobs:
             scripts/marinbot.js
             marinbot.json
           sparse-checkout-cone-mode: false
-          path: marinbot
+          path: ../marinbot
 
       - name: Parse command and validate
         id: meta
