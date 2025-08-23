@@ -31,7 +31,7 @@ tinystories_tokenized = default_tokenize(
 nano_train_config = SimpleTrainConfig(
     # Here we define the hardware resources we need.
     # resources=CpuOnlyConfig(num_cpus=1),
-    resources=TpuPodConfig(tpu_type="v4-8"),
+    resources=TpuPodConfig(tpu_type="v5litepod-8"),
     train_batch_size=4,
     num_train_steps=100,
     # set hyperparameters
