@@ -5,6 +5,9 @@
 #
 # @marinbot ray_run [ray_run_args] --cluster <path> <module> - Submits and runs a Ray job on the specified cluster
 # @marinbot stop --cluster <path> <job_id> - Stops a specific Ray job (requires manual job ID from logs)
+#
+# TODO
+# Post failure message if there's an internal error?
 
 name: Marin Bot
 
@@ -103,6 +106,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install 'ray[default]'
+          tree -L 3 /home/runner/work
           if [[ "${{ steps.meta.outputs.command }}" == "ray_run" ]]; then
             pip install uv
             uv pip install --system -e . --torch-backend=cpu
