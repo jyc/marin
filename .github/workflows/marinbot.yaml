@@ -27,6 +27,11 @@ jobs:
   marinbot:
     runs-on: ubuntu-latest
     if: contains(github.event.comment.body, '@marinbot')
+
+    defaults:
+      run:
+        working-directory: ./marin
+
     steps:
       # Checkout from main; this action only runs on main, so using
       # marinbot.json from main should keep people from giving themselves
@@ -38,7 +43,7 @@ jobs:
             scripts/marinbot.js
             marinbot.json
           sparse-checkout-cone-mode: false
-          path: ../marinbot
+          path: marinbot
 
       - name: Parse command and validate
         id: meta
