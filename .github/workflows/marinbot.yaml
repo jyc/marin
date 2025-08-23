@@ -14,7 +14,8 @@ on:
 
 permissions:
   contents: read
-  pull-requests: read
+  # If pull-requests: read, we get a 403 when trying to write to PR comments.
+  pull-requests: write
   issues: write
   actions: write
   id-token: write
