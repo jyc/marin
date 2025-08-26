@@ -197,6 +197,9 @@ def handle_ray_run(
     }
 
     write_outputs(result)
+
+    post_issue_comment(session, owner, repo, issue_number, f"🚀 Starting: `{full_command}`")
+
     return result
 
 
